@@ -6,7 +6,7 @@
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 07:42:27 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 09:37:56 by anfouger         ###   ########.fr       */
+/*   Updated: 2025/12/23 09:54:16 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ void	handler(int sig)
 		if (bits == 0)
 			write(1, "\n", 1);
 		else
-		{
 			write(1, &bits, 1);
-			bits = 0;
-			count = 0;
-		}
-			
+		bits = 0;
+		count = 0;
 	}
 }
 
