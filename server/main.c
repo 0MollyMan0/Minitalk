@@ -6,7 +6,7 @@
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 07:42:27 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 08:38:50 by anfouger         ###   ########.fr       */
+/*   Updated: 2025/12/23 09:37:56 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,25 @@
 
 void	handler(int sig)
 {
-	static char bits;
-	static int count;
+	static unsigned char	bits;
+	static int 				count;
 
 	if (sig == SIGUSR1)
-	{
 		bits = bits | 0 << count;
-		write(1, "SIGUSR1 received\n", 17);
-	}
 	else if (sig == SIGUSR2)
-	{
 		bits = bits | 1 << count;
-		write(1, "SIGUSR2 received\n", 17);	
-	}
 	count++;
 	if (count == 8)
 	{
-		write(1, &bits, 1);
-		count = 0;
+		if (bits == 0)
+			write(1, "\n", 1);
+		else
+		{
+			write(1, &bits, 1);
+			bits = 0;
+			count = 0;
+		}
+			
 	}
 }
 
