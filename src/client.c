@@ -6,7 +6,7 @@
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:52:49 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 13:02:47 by anfouger         ###   ########.fr       */
+/*   Updated: 2025/12/23 14:57:16 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,21 @@ static void	ack_handler(int sig)
 	g_ack_received = 1;
 }
 
-static void	send_char(unsigned char c, int server_PID)
+static void	send_byte(unsigned char c, int server_PID)
 {
-	int	j;
 	int	bit;
 
-	j = 0;
-	while (j < 8)
+	bit = 0;
+	while (bit < 8)
 	{
 		g_ack_received = 0;
-		bit = (c >> j) & 1;
-		if (bit)
+		if ((c >> bit) & 1)
 			kill(server_PID, SIGUSR2);
 		else
 			kill(server_PID, SIGUSR1);
 		while (g_ack_received == 0)
 			;
-		j++;
+		bit++;
 	}
 }
 
@@ -47,10 +45,10 @@ static void	send_string(char *s, int server_PID)
 	i = 0;
 	while (s[i])
 	{
-		send_char((unsigned char)s[i], server_PID);
+		send_byte((unsigned char)s[i], server_PID);
 		i++;
 	}
-	send_char('\0', server_PID);
+	send_byte(0, server_PID);
 }
 
 int main(int ac, char **av)
