@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 10:45:37 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 11:12:21 by anfouger         ###   ########.fr       */
+/*   Created: 2025/10/20 07:14:34 by anfouger          #+#    #+#             */
+/*   Updated: 2025/12/23 11:04:37 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+int	ft_atoi(char *str)
+{
+	int	i;
+	int	pos;
+	int	res;
 
-# include <signal.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdlib.h>
-
-/*---Verif---*/
-int		ft_verif_pid(char *s);
-int		ft_verif_max(char *s);
-
-/*---Utils---*/
-int		ft_atoi(char *str);
-size_t	ft_strlen(const char *s);
-char	*ft_itoa(int n);
-
-#endif
+	i = 0;
+	pos = 1;
+	res = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			pos *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	return (res * pos);
+}
