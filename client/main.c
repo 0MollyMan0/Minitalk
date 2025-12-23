@@ -6,7 +6,7 @@
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:52:49 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 09:54:47 by anfouger         ###   ########.fr       */
+/*   Updated: 2025/12/23 10:05:02 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int main(int ac, char **av)
 				kill(server_PID, SIGUSR2);
 			else
 				kill(server_PID, SIGUSR1);
-			usleep(2000);
+			usleep(500);
 			j++;
 		}
 		i++;
