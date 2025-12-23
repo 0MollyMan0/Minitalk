@@ -10,7 +10,7 @@ Chaque processus contient **une table de signaux** qui lui est **associer**. Si 
 0 -> 1 alors le signal passe en **pending** le temps d'etre gerer.
 
 Quand il passe en pending **le kernel met en "pause" le processus** et garde sont etat en memoire.
-Ensuite soit il fait l'**action par default associer au signal**, soit s'il y en a un le **handler** associer au 
+Ensuite soit il fait l'**action par default associer au signal**, soit (s'il y en a un) il execute le **handler** associer au 
 processus, soit il l'**ignore**.
 
 Une fois qu'il a finis l'action le kernel **remet le bit associer a 0** et il **relance le programme** ( s'il
@@ -35,6 +35,9 @@ Par fonction simple on entend une fonction qui **n'interagit pas avec la memoire
 Pour mettre en place un handler on fait:
 
 ```c
+#define _POSIX_SOURCE // pour avoir la struct sigaction
+#include <signal.h> // pour l'utilisation basique des signaux UNIX
+
 void handler(int sig) {
     // code minimal
 }
@@ -90,6 +93,9 @@ A simple function is one that does **not interact with memory** (i.e., no printf
 To set up a handler, do the following:
 
 ```c
+#define _POSIX_SOURCE // to have the struct sigaction
+#include <signal.h> // for basic used of UNIX signals 
+
 void handler(int sig) {
     // minimal code
 }
