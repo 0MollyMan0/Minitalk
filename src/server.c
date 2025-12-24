@@ -6,17 +6,16 @@
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 07:42:27 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 14:59:44 by anfouger         ###   ########.fr       */
+/*   Updated: 2025/12/24 06:20:29 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <minitalk.h>
 
 static void	handler(int sig, siginfo_t *info, void *context)
 {
 	static unsigned char	bits;
-	static int 				count;
+	static int				count;
 
 	(void)context;
 	if (sig == SIGUSR2)
@@ -37,11 +36,11 @@ static void	handler(int sig, siginfo_t *info, void *context)
 	kill(info->si_pid, SIGUSR1);
 }
 
-int main(void)
+int	main(void)
 {
-	struct sigaction sa;
-	char *pid;
-	
+	struct sigaction	sa;
+	char				*pid;
+
 	sa.sa_sigaction = handler;
 	sigemptyset(&sa.sa_mask);
 	sigaddset(&sa.sa_mask, SIGUSR1);
@@ -53,6 +52,6 @@ int main(void)
 	write(1, pid, ft_strlen(pid));
 	free(pid);
 	while (1)
-	;
-	return 0;
+		;
+	return (0);
 }
