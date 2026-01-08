@@ -6,7 +6,7 @@
 /*   By: anfouger <anfouger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 08:52:49 by anfouger          #+#    #+#             */
-/*   Updated: 2025/12/23 14:57:16 by anfouger         ###   ########.fr       */
+/*   Updated: 2026/01/08 11:37:06 by anfouger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,18 @@ static void	send_string(char *s, int server_PID)
 	send_byte(0, server_PID);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	struct sigaction sa;
-	int	server_PID;
-	
+	struct sigaction	sa;
+	int					server_pid;
+
 	sa.sa_handler = ack_handler;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGUSR1, &sa, NULL);
 	if (ac != 3 || !ft_verif_max(av[1]) || !ft_verif_pid(av[1]))
 		return (1);
-	server_PID = atoi(av[1]);
-	send_string(av[2], server_PID);
-	return 0;
+	server_pid = atoi(av[1]);
+	send_string(av[2], server_pid);
+	return (0);
 }
- 
