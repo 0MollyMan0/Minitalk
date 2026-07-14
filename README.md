@@ -30,7 +30,7 @@ Chaque signal a un comportement par défaut :
 | SIGSEGV | core dump + termine  |
 | SIGUSR1 | termine le processus |
 
-Par fonction simple on entend une fonction qui **n'interagit pas avec la memoire** (donc pas de printf, malloc, etc...) car etant donner que le processus est en attente il peut etre entrain de faire travailler avec la memoire et donc lorsque le processus sera relancer **son travail sera interrompu** ce qui produira un **comportement indefini**.
+Par fonction simple, on entend une fonction qui **n'interagit pas avec la mémoire** (donc pas de printf, malloc, etc...) car étant donné que le processus est en attente, il peut être en train de faire travailler la mémoire, alors quand le processus sera relancé **son travail sera interrompu**, ce qui produira un **comportement indéfini**.
 
 Pour mettre en place un handler on fait:
 
